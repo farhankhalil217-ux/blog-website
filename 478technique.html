@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 4-7-8 Technique | VentSpace</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* --- Shared Theme Styles --- */
+        :root {
+            --primary-mint: #95d5b2;
+            --soft-white: #f8fcf9;
+            --text-dark: #1b4332;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-dark);
+            /* The Breathing Gradient Background */
+            background: linear-gradient(-45deg, #f8fcf9, #d8f3dc, #95d5b2, #b7e4c7);
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Progress Bar --- */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-mint);
+            width: 0%;
+        }
+
+        /* --- Navigation --- */
+        .floating-nav {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-btn:hover { opacity: 1; }
+        .back-btn span { margin-right: 8px; font-size: 1.2rem; }
+
+        /* --- The Reading Column --- */
+        .reading-column {
+            max-width: 800px;
+            margin: 6rem auto 4rem auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 4rem 10%;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* --- Content Typography --- */
+        header.post-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .meta-data {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #52b788;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        .content p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content ol {
+            list-style: none;
+            counter-reset: my-counter;
+            margin-bottom: 2rem;
+        }
+
+        .content li {
+            font-size: 1.15rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+
+        .content li::before {
+            counter-increment: my-counter;
+            content: counter(my-counter);
+            color: var(--primary-mint);
+            font-size: 1rem;
+            font-weight: 600;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            border: 1px solid var(--primary-mint);
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        blockquote {
+            border-left: 2px solid var(--primary-mint);
+            padding-left: 1.5rem;
+            margin: 3rem 0;
+            font-size: 1.5rem;
+            font-weight: 200;
+            font-style: italic;
+            color: #1b4332;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .reading-column {
+                margin: 0;
+                border-radius: 0;
+                padding: 4rem 1.5rem;
+                min-height: 100vh;
+                border: none;
+            }
+            .floating-nav {
+                background: rgba(255,255,255,0.8);
+                padding: 10px;
+                border-radius: 50%;
+                top: 1rem;
+                left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <nav class="floating-nav">
+        <a href="web1.html" class="back-btn"><span>&larr;</span> Back</a>
+    </nav>
+
+    <article class="reading-column">
+        
+        <header class="post-header">
+            <span class="meta-data">Breathwork &bull; 3 Min Read</span>
+            <h1>The 4-7-8 Breath</h1>
+        </header>
+
+        <div class="content">
+            <p>When you are stressed, your body thinks it is under attack. Your breath becomes shallow, your heart rate spikes, and your muscles tense. This is the "Fight or Flight" response.</p>
+
+            <p>But you have a built-in remote control to switch this off. It is your breath. By changing the rhythm of your breathing, you can physically trick your brain into calming down. This is the "Rest and Digest" state.</p>
+
+            <blockquote>
+                "Breath is the bridge which connects life to consciousness, which unites your body to your thoughts."
+            </blockquote>
+
+            <h2>The Physiology of the Exhale</h2>
+
+            <p>Why does this technique work? It is all about the ratios. When you inhale, your heart rate speeds up slightly. When you exhale, it slows down.</p>
+            
+            <p>By making your exhale twice as long as your inhale, you are sending a powerful signal via the Vagus Nerve to your brain: <em>"We are safe. We can relax now."</em></p>
+
+            <h2>The Practice</h2>
+
+            <p>You can do this anywhere—sitting at your desk, lying in bed, or waiting in traffic. Keep your back straight and follow these steps:</p>
+
+            <ol>
+                <li><strong>Inhale:</strong> Breathe in quietly through your nose for a count of <strong>4</strong>. Fill your belly, not just your chest.</li>
+                <li><strong>Hold:</strong> Hold your breath for a count of <strong>7</strong>. This allows oxygen to fully circulate in your bloodstream.</li>
+                <li><strong>Exhale:</strong> Exhale completely through your mouth, making a <em>whoosh</em> sound, for a count of <strong>8</strong>. Empty your lungs entirely.</li>
+            </ol>
+
+            <p>Repeat this cycle four times. Do not force it. If you feel lightheaded, speed up the count but keep the ratio the same (4:7:8).</p>
+
+            <h2>Consistency is Key</h2>
+
+            <p>Think of this as a preventative medicine, not just an emergency cure. Practicing this twice a day creates a lower baseline for anxiety in your body, making you more resilient when actual stress arrives.</p>
+        </div>
+
+    </article>
+
+    <script>
+        // Progress Bar Logic
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        };
+
+        // Text Reveal Animation (GSAP)
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate Header
+        gsap.from(".post-header", { duration: 1.5, opacity: 0, y: 30, ease: "power3.out" });
+
+        // Animate Content Elements
+        gsap.utils.toArray('.content p, .content h2, .content li, blockquote').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 90%", // Animate when element enters bottom of screen
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 20,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>

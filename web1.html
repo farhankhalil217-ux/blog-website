@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindGarden | Slow Thoughts</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MindGarden.</div>
+        <div>
+            <a href="#" class="menu-item">Journal</a>
+            <a href="#" class="menu-item" id="contact-link">Contact Me</a>
+            <a href="#" class="menu-item" id="about-link">About</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1 id="hero-title">Slow down.<br>Breathe.<br>Be here.</h1>
+        <p class="subtitle" id="hero-sub">A digital sanctuary for attention training and the practice of stillness.</p>
+    </header>
+
+
+    <div class="container">
+
+
+         <article class="blog-card">
+            <div>
+                <span class="card-category">Awareness</span>
+                <h2 class="card-title">When Life Becomes a Test Instead of an Experience</h2>
+                <p class="card-excerpt">Whenever I try to engage in something meaningful like reading, learning, or reflecting, my chest tightens and my mind seems to freeze. Instead of staying with the moment, my attention becomes rushed, as if it needs to grasp and understand everything at once. The result is not clarity, but mental blockage and inner pressure.</p>
+            </div>
+            <a href="lifetestexperience.html" class="read-btn">Read More <span>&rarr;</span></a>
+        </article>
+        
+        <article class="blog-card">
+            <div>
+                <span class="card-category">Awareness</span>
+                <h2 class="card-title">The Past v/s Present experiences of mind</h2>
+                <p class="card-excerpt">Ever wondered why the present feels hollow while the past feels beautiful? Explore the psychology behind nostalgia, the illusion of fulfillment, and how to make peace with the emptiness of the present moment.</p>
+            </div>
+            <a href="nostalgiaillusion.html" class="read-btn">Read More <span>&rarr;</span></a>
+        </article>
+
+        <article class="blog-card">
+            <div>
+                <span class="card-category">Awareness</span>
+                <h2 class="card-title">The Pendulm behavior of mind</h2>
+                <p class="card-excerpt">When the mind remains calm for some time, it starts craving fast and stimulating activities, such as listening to loud music, scrolling reels, or exploring something exciting. After getting tired of this fast-paced content, the mind again starts craving calmness and silence. Why does the mind keep shifting between calmness and stimulation.</p>
+            </div>
+            <a href="thependulmmind.html" class="read-btn">Read More <span>&rarr;</span></a>
+        </article>
+        
+        <article class="blog-card">
+            <div>
+                <span class="card-category">Awareness</span>
+                <h2 class="card-title">The Art of Doing Nothing</h2>
+                <p class="card-excerpt">Why is it so hard to sit still? We explore the psychology of the "busy mind" and how to detach from the urge to produce.</p>
+            </div>
+            <a href="blog1.html" class="read-btn">Read More <span>&rarr;</span></a>
+        </article>
+
+        <article class="blog-card">
+            <div>
+                <span class="card-category">Attention Training</span>
+                <h2 class="card-title">Digital Minimalism</h2>
+                <p class="card-excerpt">Reclaiming your focus in an economy designed to steal it. A practical guide to lowering digital noise.</p>
+            </div>
+            <a href="digitalminimalism.html" class="read-btn">Read More <span>&rarr;</span></a>
+        </article>
+
+        
+
+        <article class="blog-card">
+            <div>
+                <span class="card-category">Meditation</span>
+                <h2 class="card-title">Watching the Thinker</h2>
+                <p class="card-excerpt">You are not your thoughts. You are the space in which they occur. Learning to observe without judgement.</p>
+            </div>
+            <a href="watchingthethinker.html" class="read-btn">Read More <span>&rarr;</span></a>
+        </article>
+
+         <article class="blog-card">
+            <div>
+                <span class="card-category">Breathwork</span>
+                <h2 class="card-title">4-7-8 Technique</h2>
+                <p class="card-excerpt">A simple physiological trick to reset your nervous system from 'fight or flight' to 'rest and digest'.</p>
+            </div>
+            <a href="478technique.html" class="read-btn">Read More <span>&rarr;</span></a>
+        </article>
+
+    </div>
+<div class="modal-overlay" id="about-modal">
+    <div class="modal-content">
+        <button class="close-modal" id="close-btn">&times;</button>
+        <h2>About This Space</h2>
+        
+        <p>
+            MindGarden is a digital sanctuary designed to counteract the noise of the modern web. 
+            Here, there are no algorithms, no infinite scrolls, and no demands for your attention. 
+            Just simple words, meant to be read slowly.
+        </p>
+        
+    </div>
+</div>
+
+<div class="contact-overlay" id="contact-modal">
+    <div class="contact-card">
+        <button class="close-contact" id="close-contact-btn">&times;</button>
+        <h2>Say Hello</h2>
+        <p class="contact-sub">I'm always open to a mindful chat.</p>
+        
+        <div class="contact-links">
+            <a href="mailto:your-email@example.com" class="contact-item">
+                <span class="icon">✉</span>
+                <span class="label">mindgardenn@gmail.com</span>
+            </a>
+
+            <a href="https://wa.me/+923060002935" target="_blank" class="contact-item">
+                <span class="icon">✆</span>
+                <span class="label">WhatsApp Me</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+    <footer>
+        <p>&copy; 2026 MindGarden. Designed to slow down your thoughts.</p>
+    </footer>
+
+    <script>
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animation (Load on start)
+        const tl = gsap.timeline();
+        tl.to("#hero-title", { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" })
+          .to("#hero-sub", { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, "-=1");
+
+        // Blog Cards Staggered Animation (On Scroll)
+        // This makes the cards float up one by one as the user scrolls down
+        gsap.utils.toArray('.blog-card').forEach((card, i) => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%", // Animation starts when top of card hits 85% of viewport height
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+
+        // Ad Animation (Fade in)
+        gsap.from(".ad-banner", {
+            scrollTrigger: {
+                trigger: ".ad-banner",
+                start: "top 90%"
+            },
+            opacity: 0,
+            y: 20,
+            duration: 1
+        });
+
+        // --- About Modal Logic ---
+const aboutLink = document.getElementById('about-link');
+const modal = document.getElementById('about-modal');
+const closeBtn = document.getElementById('close-btn');
+
+// Open Modal
+aboutLink.addEventListener('click', (e) => {
+    e.preventDefault(); // Stop page from jumping
+    modal.classList.add('active');
+});
+
+// Close Modal (X button)
+closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+});
+
+// Close Modal (Clicking outside the box)
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.remove('active');
+    }
+});
+
+// --- Contact Modal Logic ---
+const contactLink = document.getElementById('contact-link');
+const contactModal = document.getElementById('contact-modal');
+const closeContactBtn = document.getElementById('close-contact-btn');
+
+// Open Contact
+contactLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    contactModal.classList.add('active');
+});
+
+// Close Contact (X button)
+closeContactBtn.addEventListener('click', () => {
+    contactModal.classList.remove('active');
+});
+
+// Close Contact (Clicking outside)
+contactModal.addEventListener('click', (e) => {
+    if (e.target === contactModal) {
+        contactModal.classList.remove('active');
+    }
+});
+    </script>
+</body>
+</html>

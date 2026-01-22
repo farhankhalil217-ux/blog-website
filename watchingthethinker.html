@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watching the Thinker | VentSpace</title>
+     <link rel="stylesheet" href="contentstyling.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <nav class="floating-nav">
+        <a href="web1.html" class="back-btn"><span>&larr;</span> Back</a>
+    </nav>
+
+    <article class="reading-column">
+        
+        <header class="post-header">
+            <span class="meta-data">Meditation &bull; 6 Min Read</span>
+            <h1>Watching the Thinker</h1>
+        </header>
+
+        <div class="content">
+            <p>If you sit in a quiet room, you will notice something immediately: the room is quiet, but your head is not. There is a voice in there. It comments, it judges, it replays the past, and it rehearses the future. It never stops.</p>
+
+            <p>Most of us identify completely with this voice. We say, "I am thinking." But if you can hear the voice talking... then who is the one listening?</p>
+
+            <blockquote>
+                "The mind is a superb instrument if used rightly. Used wrongly, however, it becomes very destructive."
+            </blockquote>
+
+            <h2>The Sky and The Clouds</h2>
+
+            <p>Imagine your mind is the blue sky. Your thoughts are the clouds drifting through it. Some clouds are white and fluffy (happy thoughts), while others are dark and stormy (anxious thoughts).</p>
+            
+            <p>The problem arises when we grab onto a storm cloud and say, "I am this storm." We forget that we are actually the sky—the vast, open space that holds the weather but is never hurt by it. The sky remains unchanged, no matter how violent the storm is.</p>
+
+            <h2>Practical Exercise: Labeling</h2>
+
+            <p>You can practice this separation right now. It is called "Labeling." When a thought arises, do not fight it. Instead, gently stick a label on it, as if you were sorting mail.</p>
+
+            <ul>
+                <li><strong>Planning:</strong> If you find yourself thinking about tomorrow's grocery list.</li>
+                <li><strong>Replaying:</strong> If you are analyzing a conversation from yesterday.</li>
+                <li><strong>Judging:</strong> If you are criticizing yourself or someone else.</li>
+            </ul>
+
+            <p>Once you label the thought, visualize yourself gently placing it on a leaf and letting it float down a stream. Watch it go.</p>
+
+            <h2>The Gap</h2>
+
+            <p>As you practice this, you will begin to notice small gaps in the stream of thinking. Seconds of pure silence. In those gaps, you will find your peace. You will realize you are not the thinker; you are the awareness behind the thought.</p>
+        </div>
+
+    </article>
+
+    <script>
+        // Progress Bar Logic
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        };
+
+        // Text Reveal Animation (GSAP)
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate Header
+        gsap.from(".post-header", { duration: 1.5, opacity: 0, y: 30, ease: "power3.out" });
+
+        // Animate Content Elements
+        gsap.utils.toArray('.content p, .content h2, .content li, blockquote').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 90%", // Animate when element enters bottom of screen
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 20,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>

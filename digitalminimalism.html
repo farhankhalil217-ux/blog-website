@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Minimalism | VentSpace</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* --- Keeping consistency with your Theme --- */
+        :root {
+            --primary-mint: #95d5b2;
+            --soft-white: #f8fcf9;
+            --text-dark: #1b4332;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-dark);
+            /* The Breathing Gradient Background */
+            background: linear-gradient(-45deg, #f8fcf9, #d8f3dc, #95d5b2, #b7e4c7);
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Progress Bar --- */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-mint);
+            width: 0%;
+        }
+
+        /* --- Navigation --- */
+        .floating-nav {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-btn:hover { opacity: 1; }
+        .back-btn span { margin-right: 8px; font-size: 1.2rem; }
+
+        /* --- The Reading Column --- */
+        .reading-column {
+            max-width: 800px;
+            margin: 6rem auto 4rem auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 4rem 10%;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* --- Content Typography --- */
+        header.post-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .meta-data {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #52b788;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        .content p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .content li {
+            font-size: 1.15rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .content li::before {
+            content: '•';
+            color: var(--primary-mint);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        blockquote {
+            border-left: 2px solid var(--primary-mint);
+            padding-left: 1.5rem;
+            margin: 3rem 0;
+            font-size: 1.5rem;
+            font-weight: 200;
+            font-style: italic;
+            color: #1b4332;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .reading-column {
+                margin: 0;
+                border-radius: 0;
+                padding: 4rem 1.5rem;
+                min-height: 100vh;
+                border: none;
+            }
+            .floating-nav {
+                background: rgba(255,255,255,0.8);
+                padding: 10px;
+                border-radius: 50%;
+                top: 1rem;
+                left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <nav class="floating-nav">
+        <a href="web1.html" class="back-btn"><span>&larr;</span> Back</a>
+    </nav>
+
+    <article class="reading-column">
+        
+        <header class="post-header">
+            <span class="meta-data">Focus &bull; 5 Min Read</span>
+            <h1>Digital Minimalism</h1>
+        </header>
+
+        <div class="content">
+            <p>Every time your pocket buzzes, a tiny biological process triggers in your brain. It is the same process that kept our ancestors alive when they heard a twig snap in the forest. It is an alert system. It demands attention.</p>
+
+            <p>But today, the twig snapping isn't a predator. It is a push notification about a sale on shoes, or a "like" from a stranger. We are living in an economy that mines our attention as a raw material.</p>
+
+            <blockquote>
+                "To be everywhere is to be nowhere." — Seneca
+            </blockquote>
+
+            <h2>The Slot Machine in Your Pocket</h2>
+
+            <p>This is not an accident. User interfaces are designed with "intermittent variable rewards"—the exact same psychology used in casino slot machines. You pull to refresh (pull the lever), and you wait to see if you won a prize (a new email, a notification, a comment).</p>
+
+            <p>This constant checking fragments our reality. It creates a background hum of anxiety, a feeling that we are missing something, or that we should be doing something else.</p>
+
+            <h2>Reclaiming Your Space</h2>
+
+            <p>Digital Minimalism is not about throwing your phone in the river. It is about intention. It is about using technology as a tool to support your values, rather than as a source of cheap entertainment to numb your mind.</p>
+
+            <p>Here are three practical steps to lower the noise today:</p>
+
+            <ul>
+                <li><strong>The Phone Foyer Method:</strong> When you walk into your home, plug your phone into a charger near the door. Do not carry it around the house like an oxygen tank. If you need to use it, walk to the foyer.</li>
+                <li><strong>The "Do Not Disturb" Default:</strong> Keep your phone on Do Not Disturb mode 24/7. Allow calls only from "Favorites" (family/emergency). Check notifications on your schedule, not when the app demands it.</li>
+                <li><strong>Single-Tasking:</strong> If you are watching a movie, just watch the movie. If you are eating, just eat. Re-train your brain to do one thing at a time.</li>
+            </ul>
+
+            <h2>The Result</h2>
+
+            <p>When you strip away the digital noise, you might feel bored at first. This is normal. It is withdrawal. But on the other side of that boredom is clarity. You will find you have time to think, time to breathe, and time to simply exist.</p>
+        </div>
+
+    </article>
+
+    <script>
+        // Progress Bar Logic
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        };
+
+        // Text Reveal Animation (GSAP)
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate Header
+        gsap.from(".post-header", { duration: 1.5, opacity: 0, y: 30, ease: "power3.out" });
+
+        // Animate Content Elements
+        gsap.utils.toArray('.content p, .content h2, .content li, blockquote').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 90%", // Animate when element enters bottom of screen
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 20,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>
